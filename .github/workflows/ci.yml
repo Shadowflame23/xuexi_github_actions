@@ -23,7 +23,7 @@ on:
       buildVersion:
         description: "Build Version"
         required: true
-        default: ${{ env.VERSION }}
+        default: 0.0.1
 
 jobs:
   build_test:
