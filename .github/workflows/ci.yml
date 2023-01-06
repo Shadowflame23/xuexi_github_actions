@@ -1,0 +1,64 @@
+name: Test, Build, Push
+
+env:
+  APP_NAME: xuexigithubactions
+  VERSION: ${{ github.run_number }}
+  NODE_VERSION: 16
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+    inputs:
+      buildEnvironment:
+        description: "Build Environment"
+        required: false
+        type: choice
+        options:
+          - dev
+          - stage
+          - prod
+        default: "dev"
+      buildVersion:
+        description: "Build Version"
+        required: true
+        default: ${{ env.VERSION }}
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install deps
+        run: npm i
+
+      - name: Run test
+        run: npm test
+
+  build_container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Login to container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.CONTAINER_REGISTRY }}
+          username: ${{ secrets.REGISTRY_USR }}
+          password: ${{ secrets.REGISTRY_PWD }}
+
+      - name: Build the image
+        run: docker build -t ${{ secrets.CONTAINER_REGISTRY }}/${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:v${{ github.event.inputs.buildVersion }} -f Dockerfile
+
+      - name: Push the image
+        run: docker push ${{ secrets.CONTAINER_REGISTRY }}/${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:v${{ github.event.inputs.buildVersion }}

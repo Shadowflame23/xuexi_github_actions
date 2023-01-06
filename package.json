@@ -1,0 +1,28 @@
+{
+  "name": "xuexi_github_actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shadowflame23/xuexi_github_actions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shadowflame23/xuexi_github_actions/issues"
+  },
+  "homepage": "https://github.com/Shadowflame23/xuexi_github_actions#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "vite": "^4.0.4",
+    "vitest": "^0.26.3"
+  }
+}
