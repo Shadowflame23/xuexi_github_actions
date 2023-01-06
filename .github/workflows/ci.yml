@@ -61,7 +61,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PWD }}
 
       - name: Build the image
-        run: docker build -t ${{ secrets.CONTAINER_REGISTRY }}/${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:v${{ github.event.inputs.buildVersion }} -f Dockerfile
+        run: docker build -t ${{ secrets.CONTAINER_REGISTRY }}/${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:v${{ github.event.inputs.buildVersion }} -f Dockerfile .
 
       - name: Push the image
         run: docker push ${{ secrets.CONTAINER_REGISTRY }}/${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:v${{ github.event.inputs.buildVersion }}
