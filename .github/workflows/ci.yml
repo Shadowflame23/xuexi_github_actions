@@ -29,41 +29,8 @@ on:
 
 jobs:
   build_test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-
-      - name: Install deps
-        run: npm i
-
-      - name: Run test
-        run: npm test
-
-      - name: Build App
-        run: |
-          if [ ${{ github.event.inputs.buildEnvironment }} == "dev" ]; then
-            echo "Will build dev build"
-          elif [ ${{ github.event.inputs.buildEnvironment }} == "stage" ]; then
-            echo "Will build stage build"
-          elif [ ${{ github.event.inputs.buildEnvironment }} == "prod" ]; then
-            echo "Will build prod build"
-          else
-            echo "Invalid Environment"
-            exit 22
-          fi
-
-  build_container:
     if: ${{ github.event.input.continuousIntegration  }}
-    runs-on: ubuntu-latest
-    needs: [build_test]
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Test T
