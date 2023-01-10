@@ -3,23 +3,23 @@ name: Test, Build, Push
 env:
   APP_NAME: xuexigithubactions
   VERSION: ${{ github.run_number }}
-  NODE_VERSION: 16
- on:
+
+on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Log level'
+        description: "Log level"
         required: true
-        default: 'warning'
+        default: "warning"
         type: choice
         options:
-        - info
-        - warning
-        - debug
+          - info
+          - warning
+          - debug
       tags:
-        description: 'Test scenario tags'
+        description: "Test scenario tags"
         required: false
-        type: boolean 
+        type: boolean
 
 jobs:
   log-the-inputs:
@@ -27,16 +27,15 @@ jobs:
     steps:
       - run: |
           echo "Log level: $LEVEL"
-          echo "Tags: $TAGS" 
+          echo "Tags: $TAGS"
         env:
           LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }} 
-      
+          TAGS: ${{ inputs.tags }}
+
       - name: "LOL"
         if: ${{ inputs.tags }}
         run: echo "ITS ONNNNN"
-      
+
       - name: "OFF"
         if: ${{ inputs.tags }} != true
         run: echo "ITS OFFFFFFFF"
-
