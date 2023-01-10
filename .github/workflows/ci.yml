@@ -5,6 +5,7 @@ env:
   VERSION: ${{ github.run_number }}
   NODE_VERSION: 16
 
+on:
   workflow_dispatch:
     inputs:
       buildEnvironment:
