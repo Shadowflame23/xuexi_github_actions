@@ -33,9 +33,9 @@ jobs:
           TAGS: ${{ inputs.tags }}
 
       - name: "LOL"
-        if: ${{ inputs.tags }}
+        if: ${{ inputs.tags == true }}
         run: echo "ITS ONNNNN"
 
       - name: "OFF"
-        if: ${{ inputs.tags }} != true
+        if: ${{ inputs.tags == false }}
         run: echo "ITS OFFFFFFFF"
