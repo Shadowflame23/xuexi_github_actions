@@ -24,7 +24,7 @@ on:
       continuousIntegration:
         description: "Continuous Integration"
         required: true
-        type: bool
+        type: boolean
         default: false
 
 jobs:
