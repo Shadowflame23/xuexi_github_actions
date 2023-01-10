@@ -61,7 +61,7 @@ jobs:
           fi
 
   build_container:
-    if: github.event.input.continuousIntegration
+    if: github.event.input.continuousIntegration == 'true'
     runs-on: ubuntu-latest
     needs: [build_test]
 
