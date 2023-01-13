@@ -54,4 +54,4 @@ jobs:
 
     steps:
       - name: Deploy
-        run: echo "Deploy to k8 ${{ input.buildEnv }} env from ${{ input.containerEnv }} in progress....."
+        run: echo "Deploy to ${{ input.deployToK8 }} k8 with ${{ input.buildEnv }} build from ${{ input.containerEnv }} in progress....."
