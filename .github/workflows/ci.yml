@@ -45,13 +45,13 @@ jobs:
         run: echo "Building image....."
 
       - name: Push image
-        run: echo "Pushing to ${{ input.containerEnv }} registry"
+        run: echo "Pushing to ${{ inputs.containerEnv }} registry"
 
   deploy_to_iks:
-    if: ${{ input.deployToK8 == true }}
+    if: ${{ inputs.deployToK8 == true }}
     needs: test_build_push
     runs-on: ubuntu-latest
 
     steps:
       - name: Deploy
-        run: echo "Deploy to ${{ input.deployToK8 }} k8 with ${{ input.buildEnv }} build from ${{ input.containerEnv }} in progress....."
+        run: echo "Deploy to ${{ inputs.deployToK8 }} k8 with ${{ inputs.buildEnv }} build from ${{ inputs.containerEnv }} in progress....."
