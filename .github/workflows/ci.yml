@@ -7,35 +7,51 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: "Log level"
+      containerEnv:
+        description: "Docker Environment"
         required: true
-        default: "warning"
+        default: "docker-dev"
         type: choice
         options:
-          - info
-          - warning
-          - debug
-      tags:
-        description: "Test scenario tags"
+          - docker-dev
+          - docker-stage
+          - docker-prod
+      buildEnv:
+        description: "Build Environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - stage
+          - prod
+      deployToK8:
+        description: "Deploy to K8"
         required: false
         type: boolean
 
 jobs:
-  log-the-inputs:
+  test_build_push:
     runs-on: ubuntu-latest
+
     steps:
-      - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
+      - name: Test
+        run: echo "Running tests....."
 
-      - name: "LOL"
-        if: ${{ inputs.tags == true }}
-        run: echo "ITS ONNNNN"
+      - name: Build code
+        run: echo "Running build....."
 
-      - name: "OFF"
-        if: ${{ inputs.tags == false }}
-        run: echo "ITS OFFFFFFFF"
+      - name: Build image
+        run: echo "Building image....."
+
+      - name: Push image
+        run: echo "Pushing to ${{ input.containerEnv }} registry"
+
+  deploy_to_iks:
+    if: ${{ input.deployToK8 == true }}
+    needs: test_build_push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        run: echo "Deploy to k8 ${{ input.buildEnv }} env from ${{ input.containerEnv }} in progress....."
