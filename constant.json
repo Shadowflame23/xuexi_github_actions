@@ -1,18 +1,18 @@
 {
-    projects: [
-      {
-        date: "Jun 13 2022",
-        title: "Project A",
-        githubUrl: "https://github.com",
-        desc: "Project A desc",
-        tags: ["porjecta", "stuff"],
-      },
-      {
-        date: "Jun 13 2022",
-        title: "Project B",
-        githubUrl: "https://github.com",
-        desc: "Project B desc",
-        tags: ["porjectb", "stuff"],
-      },
-    ],
+  "projects": [
+    {
+      "date": "Jun 13 2022",
+      "title": "Project A",
+      "githubUrl": "https://github.com",
+      "desc": "Project A desc",
+      "tags": ["porjecta", "stuff"]
+    },
+    {
+      "date": "Jun 13 2022",
+      "title": "Project B",
+      "githubUrl": "https://github.com",
+      "desc": "Project B desc",
+      "tags": ["porjectb", "stuff"]
+    }
+  ]
 }
