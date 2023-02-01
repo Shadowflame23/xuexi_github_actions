@@ -61,6 +61,13 @@
       "githubUrl": "https://github.com/mattbman23/meresume",
       "desc": "Containerized Personal blog using NextJs with Tailwind",
       "tags": ["NextJs", "Tailwind"]
+    },
+    {
+      "date": "Jun 13 2022",
+      "title": "Matthew's Manga APp",
+      "githubUrl": "https://github.com/mattbman23/meresume",
+      "desc": "Containerized Personal Manga App using NextJs with Tailwind",
+      "tags": ["NextJs", "Tailwind"]
     }
   ]
 }
